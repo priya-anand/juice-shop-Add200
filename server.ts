@@ -387,8 +387,8 @@ restoreOverwrittenFilesWithOriginals().then(() => {
   /* /*Add Status 200 OK - 04/14/2025*/
    app.post('/api/*', (req: Request, res: Response, next: NextFunction) => {
             res.sendStatus(200);
-         }
-    )
+            next()
+   })
 
   /* User registration challenge verifications before finale takes over */
   app.post('/api/Users', (req: Request, res: Response, next: NextFunction) => {
