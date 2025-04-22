@@ -186,22 +186,24 @@ restoreOverwrittenFilesWithOriginals().then(() => {
     }
   }))
 
+/* Code update to Add Status 200 
+04-22-2025 */
+
+app.get('/test', (req, res) => {
+  res.status(200).send('OK');
+});
+
+app.listen(3000, () => {
+  console.log('Server listening on port 3000');
+});
+  
   /* Hiring header */
   app.use((req: Request, res: Response, next: NextFunction) => {
     res.append('X-Recruiting', config.get('application.securityTxt.hiring'))
     next()
   })
   
-  /* Get Header 200 OK*/
-  app.get((req: Request, res: Response, next: NextFunction) => {
-    res.status(200).send('OK')
-    next()
-  })
-
-  app.post((req: Request, res: Response, next: NextFunction) => {
-    res.status(200).send('OK')
-    next()
-  })
+  
   /* Remove duplicate slashes from URL which allowed bypassing subsequent filters */
   app.use((req: Request, res: Response, next: NextFunction) => {
     req.url = req.url.replace(/[/]+/g, '/')
