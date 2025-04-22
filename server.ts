@@ -191,7 +191,12 @@ restoreOverwrittenFilesWithOriginals().then(() => {
     res.append('X-Recruiting', config.get('application.securityTxt.hiring'))
     next()
   })
-
+/* Adding Header 200 OK*/
+  app.use((req: Request, res: Response, next: NextFunction) => {
+    res.status(200).send('OK')
+    next()
+  })
+  
   /* Remove duplicate slashes from URL which allowed bypassing subsequent filters */
   app.use((req: Request, res: Response, next: NextFunction) => {
     req.url = req.url.replace(/[/]+/g, '/')
