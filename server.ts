@@ -201,6 +201,11 @@ restoreOverwrittenFilesWithOriginals().then(() => {
     res.status(200).send('OK')
     next()
   })
+
+  app.post((req: Request, res: Response, next: NextFunction) => {
+    res.status(200).send('OK')
+    next()
+  })
   /* Remove duplicate slashes from URL which allowed bypassing subsequent filters */
   app.use((req: Request, res: Response, next: NextFunction) => {
     req.url = req.url.replace(/[/]+/g, '/')
