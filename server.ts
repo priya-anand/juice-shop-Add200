@@ -188,10 +188,10 @@ restoreOverwrittenFilesWithOriginals().then(() => {
 
 /* Code update to Add Status 200 
 04-22-2025 */
-
-app.get('/test', (req, res) => {
+app.get('/test', (req: Request, res: Response, next: NextFunction) => {
   res.status(200).send('OK');
-});
+  next()
+})
 
 app.listen(3000, () => {
   console.log('Server listening on port 3000');
