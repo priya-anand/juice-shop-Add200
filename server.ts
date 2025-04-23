@@ -187,7 +187,7 @@ restoreOverwrittenFilesWithOriginals().then(() => {
   }))
 
 /* Code update to Add Status 200 
-04-22-2025 */
+04-22-2025 
 app.get('/test', (req: Request, res: Response, next: NextFunction) => {
   res.status(200).send('OK');
   next()
@@ -195,7 +195,7 @@ app.get('/test', (req: Request, res: Response, next: NextFunction) => {
 
 app.listen(3000, () => {
   console.log('Server listening on port 3000');
-});
+});*/
   
   /* Hiring header */
   app.use((req: Request, res: Response, next: NextFunction) => {
@@ -396,14 +396,14 @@ app.listen(3000, () => {
   /* Captcha Bypass challenge verification */
   app.post('/api/Feedbacks', verify.captchaBypassChallenge())
  
-  /* /*Add Status 200 OK - 04/14/2025*/
-   app.post('/api/*', (req: Request, res: Response, next: NextFunction) => {
-            res.sendStatus(200);
-            next()
-   })
-
-  /* User registration challenge verifications before finale takes over */
+  
+/* Code update to Add Status 200 04-23-2025  */
   app.post('/api/Users', (req: Request, res: Response, next: NextFunction) => {
+    res.status(200).send(res.__('OK'))
+    next()
+  })
+  /* User registration challenge verifications before finale takes over */
+ /* app.post('/api/Users', (req: Request, res: Response, next: NextFunction) => {
     if (req.body.email !== undefined && req.body.password !== undefined && req.body.passwordRepeat !== undefined) {
       if (req.body.email.length !== 0 && req.body.password.length !== 0) {
         req.body.email = req.body.email.trim()
@@ -414,7 +414,7 @@ app.listen(3000, () => {
       }
     }
     next()
-  })
+  })*/
   app.post('/api/Users', verify.registerAdminChallenge())
   app.post('/api/Users', verify.passwordRepeatChallenge()) // vuln-code-snippet hide-end
   app.post('/api/Users', verify.emptyUserRegistration())
